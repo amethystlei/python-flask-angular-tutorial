@@ -10,6 +10,9 @@ import {ExamsComponent} from './exams/exams.component';
 import {ExamsApiService} from './exams/exams-api.service';
 import {CallbackComponent} from './callback.component';
 
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatToolbarModule, MatButtonModule} from '@angular/material';
+
 const appRoutes: Routes = [
   {path: 'callback', component: CallbackComponent},
   {path: 'new-exam', component: ExamFormComponent},
@@ -27,6 +30,9 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    NoopAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [ExamsApiService],
   bootstrap: [AppComponent]
