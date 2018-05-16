@@ -5,7 +5,7 @@ import {Exam} from './exam.model';
 import {ExamsApiService} from './exams-api.service';
 
 @Component({
-  selector: 'exams',
+  selector: 'app-exams',
   templateUrl: './exams.component.html',
   styleUrls: ['./exams.component.css'],
 })
@@ -30,5 +30,26 @@ export class ExamsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.examsListSubs.unsubscribe();
+  }
+
+  delete(examId: number) {
+    this.examsApi
+      .deleteExam(examId)
+      .subscribe(() => {
+        this.examsListSubs = this.examsApi
+          .getExams()
+          .subscribe(res => {
+            this.examsList = res;
+          }, console.error);
+      }, console.error);
+  }
+
+  isAdmin() {
+    if (!Auth0.isAuthenticated()) {
+      return false;
+    }
+
+    const roles = Auth0.getProfile()['https://online-exams.com/roles'];
+    return roles.includes('admin');
   }
 }

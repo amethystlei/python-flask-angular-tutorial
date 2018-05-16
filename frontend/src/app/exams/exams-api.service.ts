@@ -21,10 +21,20 @@ export class ExamsApiService {
     return this.http.get(`${API_URL}/exams`)
       .pipe(
         map(res => {
-          return res.map(item => {
-            //console.log(item);
-            return new Exam(item.title, item.description);
-          });
+          // to remove tslint about map
+          if (res instanceof Array) {
+            return res.map(item => {
+              return new Exam(
+                item.title,
+                item.description,
+                item.id,
+                item.updated_at,
+                item.created_at,
+                item.last_updated_by,
+              );
+            });
+          }
+          return [];
         }),
         catchError(ExamsApiService._handleError)
       );
@@ -38,5 +48,14 @@ export class ExamsApiService {
     };
     return this.http
       .post(`${API_URL}/exams`, exam, httpOptions);
+  }
+
+  deleteExam(examId: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${Auth0.getAccessToken()}`
+      })
+    };
+    return this.http.delete(`${API_URL}/exams/${examId}`, httpOptions);
   }
 }
