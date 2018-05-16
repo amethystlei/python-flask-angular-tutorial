@@ -6,16 +6,8 @@ import {ExamsApiService} from './exams-api.service';
 
 @Component({
   selector: 'exams',
-  template: `
-    <div>
-      <button routerLink="/new-exam">New Exam</button>
-      <ul>
-        <li *ngFor="let exam of examsList">
-          {{exam.title}}
-        </li>
-      </ul>
-    </div>
-  `
+  templateUrl: './exams.component.html',
+  styleUrls: ['./exams.component.css'],
 })
 export class ExamsComponent implements OnInit, OnDestroy {
   examsListSubs: Subscription;

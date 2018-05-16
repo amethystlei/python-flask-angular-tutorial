@@ -10,9 +10,6 @@
   <button mat-button (click)="signOut()" *ngIf="authenticated">Sign Out</button>
 </mat-toolbar>
 
-<div style="text-align:center">
-  <h1>Exams</h1>
+<div class="view-container">
+  <router-outlet></router-outlet>
 </div>
-<h2>Here are the exams created so far: </h2>
-
-<router-outlet></router-outlet>
