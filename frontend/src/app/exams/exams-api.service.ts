@@ -27,6 +27,7 @@ export class ExamsApiService {
               return new Exam(
                 item.title,
                 item.description,
+                item.long_description,
                 item.id,
                 item.updated_at,
                 item.created_at,

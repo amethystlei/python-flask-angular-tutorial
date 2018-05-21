@@ -5,7 +5,7 @@
     <mat-card-content>
       <mat-card-title>{{exam.title}}</mat-card-title>
       <mat-card-subtitle>{{exam.description}}</mat-card-subtitle>
-      <p>This is an example exam</p>
+      <p>{{exam.long_description}}</p>
       <button mat-raised-button color="accent">Start Exam</button>
       <button mat-button color="warn" *ngIf="isAdmin()"
               (click)="delete(exam._id)">
